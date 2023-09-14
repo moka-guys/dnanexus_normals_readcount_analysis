@@ -10,8 +10,10 @@ set -e -x -o pipefail
 run=${project_name##*_}
 
 #read the DNA Nexus api key as a variable
-API_KEY=$(dx cat project-FQqXfYQ0Z0gqx7XG9Z2b4K43:mokaguys_nexus_auth_key)
-
+#API_KEY=$(dx cat project-FQqXfYQ0Z0gqx7XG9Z2b4K43:mokaguys_nexus_auth_key)
+API_KEY_wquotes=$(echo $DX_SECURITY_CONTEXT |  jq '.auth_token')
+API_KEY=$(echo "$API_KEY_wquotes" | sed 's/"//g')
+echo "$API_KEY"
 # make output dir and folder to hold downloaded files
 mkdir -p /home/dnanexus/out/exomedepth_output/exomedepth_output/$bedfile_prefix/ /home/dnanexus/to_test
 
@@ -72,10 +74,13 @@ cd /home/dnanexus
 
 mark-section "setting up Exomedepth docker image"
 # Location of the ExomeDepth docker file
-docker_file=project-ByfFPz00jy1fk6PjpZ95F27J:file-GYzKz400jy1yx101F34p8qj2
+docker_file_id=project-ByfFPz00jy1fk6PjpZ95F27J:file-GYzKz400jy1yx101F34p8qj2
 # download the docker file from 001_Tools...
-dx download $docker_file --auth "${API_KEY}"
-docker load -i '/home/dnanexus/seglh_exomedepth_87fa493.tgz'
+dx download $docker_file_id --auth "${API_KEY}"
+docker_file=$(dx describe ${docker_file_id} --name)
+DOCKERIMAGENAME=`tar xfO ${docker_file} manifest.json | sed -E 's/.*"RepoTags":\["?([^"]*)"?.*/\1/'`
+docker load < /home/dnanexus/"${docker_file}"
+echo "Using image:"${DOCKERIMAGENAME}
 mark-section "Calculate read depths using docker image"
 # docker run - mount the home directory as a share
 # call the readCount.R script
@@ -86,7 +91,7 @@ mark-section "Calculate read depths using docker image"
 #	- bam_list 
 
 # Run ReadCount script in docker container
-docker run -v /home/dnanexus:/home/dnanexus seglh/exomedepth:87fa493 readCount.R $output_RData_file $reference_fasta $bedfile_path ${bam_list[@]}
+docker run -v /home/dnanexus:/home/dnanexus ${DOCKERIMAGENAME} readCount.R $output_RData_file $reference_fasta $bedfile_path ${bam_list[@]}
 
 # Upload results
 dx-upload-all-outputs
