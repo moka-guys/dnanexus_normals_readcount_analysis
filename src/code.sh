@@ -1,5 +1,5 @@
 #!/bin/bash
-# ED_panel_of_normals_v1.0.0
+# ED_panel_of_normals_v1.1.0
 
 # The following line causes bash to exit at any point if there is any error
 # and to output each line as it is executed -- useful for debugging
@@ -74,7 +74,7 @@ cd /home/dnanexus
 
 mark-section "setting up Exomedepth docker image"
 # Location of the ExomeDepth docker file
-docker_file_id=project-ByfFPz00jy1fk6PjpZ95F27J:file-GYzKz400jy1yx101F34p8qj2
+docker_file_id=project-ByfFPz00jy1fk6PjpZ95F27J:file-Gbjy9yj0JQXkKB8bfFz856V6
 # download the docker file from 001_Tools...
 dx download $docker_file_id --auth "${API_KEY}"
 docker_file=$(dx describe ${docker_file_id} --name)
