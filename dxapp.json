@@ -1,10 +1,10 @@
 {
-  "name": "ED_panel_of_normals_v1.1.0",
-  "title": "ED_panel_of_normals_v1.1.0",
-  "summary": "v1.1.0 - Create panel of normals for cnv calling",
+  "name": "ED_panel_of_normals_v1.2.0",
+  "title": "ED_panel_of_normals_v1.2.0",
+  "summary": "v1.2.0 - Create panel of normals for cnv calling",
   "dxapi": "1.0.0",
   "properties": {
-    "github release": "v1.1.0"
+    "github release": "v1.2.0"
   },
   "inputSpec": [
     {
@@ -12,6 +12,13 @@
       "label": "project_name",
       "help": "The project containing the bamfiles.",
       "class": "string"
+    },
+    {
+      "name": "bam_str",
+      "label": "bam_str",
+      "help": "str used to search bam files. e.g. *001.ba* or *markdup.ba*",
+      "class": "string",
+      "optional": false
     },
     {
       "name": "reference_genome",

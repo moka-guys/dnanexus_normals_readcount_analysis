@@ -1,5 +1,5 @@
 #!/bin/bash
-# ED_panel_of_normals_v1.1.0
+# ED_panel_of_normals_v1.2.0
 
 # The following line causes bash to exit at any point if there is any error
 # and to output each line as it is executed -- useful for debugging
@@ -51,10 +51,10 @@ IFS=',' read -ra pannum_array <<<  $bamfile_pannumbers
 for panel in ${pannum_array[@]}
 do
 	# check there is at least one file with that pan number to download otherwise the dx download command will fail
-	if (( $(dx ls $project_name:output/*001.ba* --auth $API_KEY | grep $panel -c) > 0 ));
+	if (( $(dx ls $project_name:output/$bam_str --auth $API_KEY | grep $panel -c) > 0 ));
 	then
 		#download all the BAM and BAI files for this project/pan number
-		dx download -f $project_name:output/*$panel*001.ba* --auth $API_KEY
+		dx download -f $project_name:output/*$panel$bam_str --auth $API_KEY
 	fi
 done
 
