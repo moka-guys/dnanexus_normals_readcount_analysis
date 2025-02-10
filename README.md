@@ -1,9 +1,9 @@
-dnanexus_normals_readcount_analysis_v1.1.0
+dnanexus_normals_readcount_analysis_v1.2.0
 Exome depth is run in two stages. Firstly, read counts are calculated and the second step filers out the CNVs of interest. Read counts are calculated over the entire genome and the CNVs are filtered out using a subpanel BED file.
 
 CNV calling can be performed by providing a readcount file for a set of known normals. 
 
-dnanexus_normals_readcount_analysis_v1.1.0 calculates readcounts for a panel of normals samples intended to use as an input for https://github.com/moka-guys/dnanexus_ED_readcount_analysis
+dnanexus_normals_readcount_analysis_v1.2.0 calculates readcounts for a panel of normals samples intended to use as an input for https://github.com/moka-guys/dnanexus_ED_readcount_analysis
 
 What does the app do?
 This app runs the read count calculation stage for a set of known normals.
@@ -20,6 +20,7 @@ NOTE: BAM/BAI files need to have a "NORMAL" prefix for the app to recognise it a
 Reference_genome (*.fa.gz or *.fa) in build 37
 List of comma seperated pan numbers
 Bedfile covering the capture region
+Bam_str to download the bam files
 Optional: panel of normals
 Output
 normal.RData - Read count data for panel of normals
