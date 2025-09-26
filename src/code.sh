@@ -1,5 +1,5 @@
 #!/bin/bash
-# ED_panel_of_normals_v1.2.0
+# ED_panel_of_normals_v1.2.1
 
 # The following line causes bash to exit at any point if there is any error
 # and to output each line as it is executed -- useful for debugging
@@ -10,7 +10,7 @@ set -e -x -o pipefail
 run=${project_name##*_}
 
 #read the DNA Nexus api key as a variable
-#API_KEY=$(dx cat project-FQqXfYQ0Z0gqx7XG9Z2b4K43:mokaguys_nexus_auth_key)
+#API_KEY=$(dx cat project-J343FKBKJqkzp6qk6f6BYXB8:mokaguys_nexus_auth_key)
 API_KEY_wquotes=$(echo $DX_SECURITY_CONTEXT |  jq '.auth_token')
 API_KEY=$(echo "$API_KEY_wquotes" | sed 's/"//g')
 echo "$API_KEY"
@@ -74,7 +74,7 @@ cd /home/dnanexus
 
 mark-section "setting up Exomedepth docker image"
 # Location of the ExomeDepth docker file
-docker_file_id=project-ByfFPz00jy1fk6PjpZ95F27J:file-Gbjy9yj0JQXkKB8bfFz856V6
+docker_file_id=project-J32193pK9yGfjP2GyZ94KZf4:file-J342zpXK9yGxz8zxBKygQq80
 # download the docker file from 001_Tools...
 dx download $docker_file_id --auth "${API_KEY}"
 docker_file=$(dx describe ${docker_file_id} --name)
