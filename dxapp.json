@@ -1,10 +1,10 @@
 {
-  "name": "ED_panel_of_normals_v1.2.0",
-  "title": "ED_panel_of_normals_v1.2.0",
-  "summary": "v1.2.0 - Create panel of normals for cnv calling",
+  "name": "ED_panel_of_normals_v1.2.1",
+  "title": "ED_panel_of_normals_v1.2.1",
+  "summary": "v1.2.1 - Create panel of normals for cnv calling",
   "dxapi": "1.0.0",
   "properties": {
-    "github release": "v1.2.0"
+    "github release": "v1.2.1"
   },
   "inputSpec": [
     {
@@ -71,7 +71,7 @@
   },
   "ignoreReuse": false,
   "regionalOptions": {
-    "aws:us-east-1": {
+    "aws:eu-west-2-g": {
       "systemRequirements": {
         "*": {
           "instanceType": "mem1_ssd1_v2_x4"
