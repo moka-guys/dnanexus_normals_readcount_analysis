@@ -74,7 +74,7 @@ cd /home/dnanexus
 
 mark-section "setting up Exomedepth docker image"
 # Location of the ExomeDepth docker file
-docker_file_id=project-J32193pK9yGfjP2GyZ94KZf4:file-J342zpXK9yGxz8zxBKygQq80
+docker_file_id=project-ByfFPz00jy1fk6PjpZ95F27J:file-J2gVVb005gg4By325qjqQQz6
 # download the docker file from 001_Tools...
 dx download $docker_file_id --auth "${API_KEY}"
 docker_file=$(dx describe ${docker_file_id} --name)
